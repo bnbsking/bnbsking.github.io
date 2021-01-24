@@ -13,10 +13,13 @@
 <meta property="og:site_name" content="Data science exhibition">
 <meta property="og:description" content="IntroductionHello everyone, I am a data scientist that enthusatic on software development. The motivation of setting up my website is that I want to share my experiences and make my profolio more repr">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://bnbsking.github.io/images/setupWeb/blogFiles.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/setupWeb/admin.png">
 <meta property="article:published_time" content="2021-01-18T14:27:42.000Z">
-<meta property="article:modified_time" content="2021-01-18T14:28:06.477Z">
+<meta property="article:modified_time" content="2021-01-24T12:08:38.025Z">
 <meta property="article:author" content="James Chao">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bnbsking.github.io/images/setupWeb/blogFiles.png">
   
     <link rel="alternate" href="/atom.xml" title="Data science exhibition" type="application/atom+xml">
   
@@ -113,7 +116,9 @@
 <li>The bandwidth cannot exceed 100GB per month</li>
 <li>The submit times have a soft limit of 10 per hour</li>
 </ul>
-<p>However, it’s very enough for most of the user for sharing their techniques or displaying their works. Now, we move to the tutorial for creating your first website. (This article is for the<br>Windows10 user only). This tutorial is referenced by <a target="_blank" rel="noopener" href="https://ed521.github.io/2019/07/hexo-install/">[教學] 使用 GitHub Pages + Hexo 來架設個人部落格</a></p>
+<p>However, it’s very enough for most of the user for sharing their techniques or displaying their works. Now, we move to the tutorial for creating your first website. (This article is for the Windows10 user only). This tutorial is referenced by <a target="_blank" rel="noopener" href="https://ed521.github.io/2019/07/hexo-install/">[教學] 使用 GitHub Pages + Hexo 來架設個人部落格</a></p>
+<a id="more"></a>
+
 <h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><ol>
 <li>Sign in or Sign up your github account at <a target="_blank" rel="noopener" href="https://github.com/">Github</a>.</li>
 <li>Create a new repository with the name <font color=#0000FF>your_account_name</font>.github.io</li>
@@ -124,18 +129,38 @@
 <li><a target="_blank" rel="noopener" href="https://notepad-plus-plus.org/downloads/">Notepad++</a> (7.8.x is feasible)</li>
 </ol>
 </li>
-<li>Open the CMD and type the following commands. Note that <font color=#0000FF>your_installation_path</font> and the <font color=#0000FF>your_blog_name</font> can be set as you want.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">cd your_installation_path</span><br><span class="line">hexo init your_blog_name</span><br><span class="line">cd your_blog_name</span><br><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hexo-admin --save</span><br><span class="line">&#96;&#96;&#96;    </span><br><span class="line">Further explanation:</span><br><span class="line">    + &quot;npm&quot; is a package manager for node.js that widely used in web development under .NET framework</span><br><span class="line">    + &quot;cd&quot; stands for change directory, the most important and frequently used command in both windows and linux.</span><br><span class="line">    + These command is to install the tools that available for us to clean the cache, deploy new website and manage the web in just one line command. The other thing is to initialize our blog with your_blog_name. You can see a directory with many files in &lt;font color&#x3D;#0000FF&gt;your_installation_path&lt;&#x2F;font&gt;.</span><br><span class="line">![123](&#39;.png&#39;)</span><br><span class="line">6. Edit the text file &lt;font&gt;_config.yml&lt;&#x2F;font&gt; in &lt;font color&#x3D;#0000FF&gt;your_installation_path&lt;&#x2F;font&gt;.</span><br><span class="line">    + You can set the title, subtitle, author at this file</span><br><span class="line">    + Then set the url as https:&#x2F;&#x2F;&lt;font color&#x3D;#0000FF&gt;your_github_account&lt;&#x2F;font&gt;.github.io&#x2F;</span><br><span class="line">    + Finally, go to the bottom part of the file, and set the repo as https:&#x2F;&#x2F;github.com&#x2F;&lt;font color&#x3D;#0000FF&gt;your_github_account&lt;&#x2F;font&gt;&#x2F;&lt;font color&#x3D;#0000FF&gt;your_github_account&lt;&#x2F;font&gt;.github.io.git</span><br><span class="line">7. Now, we can deploy our website. There will be a example article as the first deployment. The following commands are both suitable for first deployment and all the deployment later.</span><br></pre></td></tr></table></figure>
-hexo cl<br>hexo g<br>hexo d<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">The three steps stands for clean, generate and deploy. You can also type the full name instead of the abbreviation. Finally, we can vist our website https:&#x2F;&#x2F;&lt;font color&#x3D;#0000FF&gt;your_github_account&lt;&#x2F;font&gt;.github.io .</span><br><span class="line"></span><br><span class="line"># Create your first post</span><br><span class="line">Now, let&#39;s start to post our first article and deploy it.</span><br><span class="line">1. Stay at the same directory, or &#96;cd your_installation_path&#96; if needed, and launch the server</span><br></pre></td></tr></table></figure>
-hexo s<br>```</li>
+<li>Open the CMD and type the following commands. Note that <font color=#0000FF>your_installation_path</font> and the <font color=#0000FF>your_blog_name</font> can be set as you want.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">cd your_installation_path</span><br><span class="line">hexo init your_blog_name</span><br><span class="line">cd your_blog_name</span><br><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hexo-admin --save</span><br></pre></td></tr></table></figure>
+<p>Further explanation:</p>
+<ul>
+<li>“npm” is a package manager for node.js that widely used in web development under .NET framework</li>
+<li>“cd” stands for change directory, the most important and frequently used command in both windows and linux.</li>
+<li>These command is to install the tools that available for us to clean the cache, deploy new website and manage the web in just one line command. The other thing is to initialize our blog with your_blog_name. You can see a directory with many files in <font color=#0000FF>your_installation_path</font>.<br><img src="/images/setupWeb/blogFiles.png" alt="123"></li>
+</ul>
+<ol start="6">
+<li>Edit the text file <font>_config.yml</font> in <font color=#0000FF>your_installation_path</font>.<ul>
+<li>You can set the title, subtitle, author at this file</li>
+<li>Then set the url as https://<font color=#0000FF>your_github_account</font>.github.io/</li>
+<li>Finally, go to the bottom part of the file, and set the repo as <a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a><font color=#0000FF>your_github_account</font>/<font color=#0000FF>your_github_account</font>.github.io.git</li>
+</ul>
+</li>
+<li>Now, we can deploy our website. There will be a example article as the first deployment. The following commands are both suitable for first deployment and all the deployment later.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo cl</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>The three steps stands for clean, generate and deploy. You can also type the full name instead of the abbreviation. Finally, we can vist our website https://<font color=#0000FF>your_github_account</font>.github.io .</p>
+<h1 id="Create-your-first-post"><a href="#Create-your-first-post" class="headerlink" title="Create your first post"></a>Create your first post</h1><p>Now, let’s start to post our first article and deploy it.</p>
+<ol>
+<li>Stay at the same directory, or <code>cd your_installation_path</code> if needed, and launch the server<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure></li>
 <li>Visit your website as adminstrator. <a target="_blank" rel="noopener" href="http://localhost:4000/admin">http://localhost:4000/admin</a></li>
-<li>Add a new article with certain title. Type something like Hello world and press the Publish botton. You can keep refresh the website <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> to preview your website.<br><img src="'.png'" alt="123"></li>
+<li>Add a new article with certain title. Type something like Hello world and press the Publish botton. You can keep refresh the website <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> to preview your website.<br><img src="/images/setupWeb/admin.png" alt="123"></li>
 <li>Press Ctrl+C in CMD to stop the server. Then deploy it by the three commands <code>hexo cl</code>, <code>hexo g</code>, and  <code>hexo d</code>.</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://bnbsking.github.io/2021/01/18/Setup-a-website-through-github-x-Hexo/" data-id="ckk2o10di00039c7k3k548xpq" data-title="Setup a website through github x Hexo" class="article-share-link">Share</a>
+      <a data-url="https://bnbsking.github.io/2021/01/18/Setup-a-website-through-github-x-Hexo/" data-id="ckkb9oiab0004447kc9dl5o3z" data-title="Setup a website through github x Hexo" class="article-share-link">Share</a>
       
       
       
@@ -144,6 +169,15 @@ hexo s<br>```</li>
   
     
 <nav id="article-nav">
+  
+    <a href="/2021/01/24/About-data-warehouse/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          About data warehouse
+        
+      </div>
+    </a>
   
   
     <a href="/2021/01/17/Untitled/" id="article-nav-older" class="article-nav-link-wrap">
@@ -184,6 +218,10 @@ hexo s<br>```</li>
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/01/24/About-data-warehouse/">About data warehouse</a>
+          </li>
         
           <li>
             <a href="/2021/01/18/Setup-a-website-through-github-x-Hexo/">Setup a website through github x Hexo</a>

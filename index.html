@@ -75,6 +75,49 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-About-data-warehouse" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/24/About-data-warehouse/" class="article-date">
+  <time class="dt-published" datetime="2021-01-24T12:15:15.000Z" itemprop="datePublished">2021-01-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/24/About-data-warehouse/">About data warehouse</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><font color=#FF0000>Data warehouse</font> (DW or DWH), also known as enterprise data warehouse (EDW), is a place that integrates data sources for some specific purpose. Since this note is written after self-learning in two days only, I will appreciate to adopt your advice if there is any defect or inaccuracy.</p>
+        
+          <p class="article-more-link">
+            <a href="/2021/01/24/About-data-warehouse/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://bnbsking.github.io/2021/01/24/About-data-warehouse/" data-id="ckkb9oia70002447k7gl09gkb" data-title="About data warehouse" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Setup-a-website-through-github-x-Hexo" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/01/18/Setup-a-website-through-github-x-Hexo/" class="article-date">
@@ -111,29 +154,16 @@
 <li>The bandwidth cannot exceed 100GB per month</li>
 <li>The submit times have a soft limit of 10 per hour</li>
 </ul>
-<p>However, it’s very enough for most of the user for sharing their techniques or displaying their works. Now, we move to the tutorial for creating your first website. (This article is for the<br>Windows10 user only). This tutorial is referenced by <a target="_blank" rel="noopener" href="https://ed521.github.io/2019/07/hexo-install/">[教學] 使用 GitHub Pages + Hexo 來架設個人部落格</a></p>
-<h1 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h1><ol>
-<li>Sign in or Sign up your github account at <a target="_blank" rel="noopener" href="https://github.com/">Github</a>.</li>
-<li>Create a new repository with the name <font color=#0000FF>your_account_name</font>.github.io</li>
-<li>Visit the repository and click “setting”, then click “Choose a theme”. No matter what theme is chosen, it will be replaced by hexo themes later.</li>
-<li>Install the software, including:<ol>
-<li><a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.js</a> (14.15.4 is feasible)</li>
-<li><a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a> (2.30.0 is feasible)</li>
-<li><a target="_blank" rel="noopener" href="https://notepad-plus-plus.org/downloads/">Notepad++</a> (7.8.x is feasible)</li>
-</ol>
-</li>
-<li>Open the CMD and type the following commands. Note that <font color=#0000FF>your_installation_path</font> and the <font color=#0000FF>your_blog_name</font> can be set as you want.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">cd your_installation_path</span><br><span class="line">hexo init your_blog_name</span><br><span class="line">cd your_blog_name</span><br><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hexo-admin --save</span><br><span class="line">&#96;&#96;&#96;    </span><br><span class="line">Further explanation:</span><br><span class="line">    + &quot;npm&quot; is a package manager for node.js that widely used in web development under .NET framework</span><br><span class="line">    + &quot;cd&quot; stands for change directory, the most important and frequently used command in both windows and linux.</span><br><span class="line">    + These command is to install the tools that available for us to clean the cache, deploy new website and manage the web in just one line command. The other thing is to initialize our blog with your_blog_name. You can see a directory with many files in &lt;font color&#x3D;#0000FF&gt;your_installation_path&lt;&#x2F;font&gt;.</span><br><span class="line">![123](&#39;.png&#39;)</span><br><span class="line">6. Edit the text file &lt;font&gt;_config.yml&lt;&#x2F;font&gt; in &lt;font color&#x3D;#0000FF&gt;your_installation_path&lt;&#x2F;font&gt;.</span><br><span class="line">    + You can set the title, subtitle, author at this file</span><br><span class="line">    + Then set the url as https:&#x2F;&#x2F;&lt;font color&#x3D;#0000FF&gt;your_github_account&lt;&#x2F;font&gt;.github.io&#x2F;</span><br><span class="line">    + Finally, go to the bottom part of the file, and set the repo as https:&#x2F;&#x2F;github.com&#x2F;&lt;font color&#x3D;#0000FF&gt;your_github_account&lt;&#x2F;font&gt;&#x2F;&lt;font color&#x3D;#0000FF&gt;your_github_account&lt;&#x2F;font&gt;.github.io.git</span><br><span class="line">7. Now, we can deploy our website. There will be a example article as the first deployment. The following commands are both suitable for first deployment and all the deployment later.</span><br></pre></td></tr></table></figure>
-hexo cl<br>hexo g<br>hexo d<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">The three steps stands for clean, generate and deploy. You can also type the full name instead of the abbreviation. Finally, we can vist our website https:&#x2F;&#x2F;&lt;font color&#x3D;#0000FF&gt;your_github_account&lt;&#x2F;font&gt;.github.io .</span><br><span class="line"></span><br><span class="line"># Create your first post</span><br><span class="line">Now, let&#39;s start to post our first article and deploy it.</span><br><span class="line">1. Stay at the same directory, or &#96;cd your_installation_path&#96; if needed, and launch the server</span><br></pre></td></tr></table></figure>
-hexo s<br>```</li>
-<li>Visit your website as adminstrator. <a target="_blank" rel="noopener" href="http://localhost:4000/admin">http://localhost:4000/admin</a></li>
-<li>Add a new article with certain title. Type something like Hello world and press the Publish botton. You can keep refresh the website <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> to preview your website.<br><img src="'.png'" alt="123"></li>
-<li>Press Ctrl+C in CMD to stop the server. Then deploy it by the three commands <code>hexo cl</code>, <code>hexo g</code>, and  <code>hexo d</code>.</li>
-</ol>
-
+<p>However, it’s very enough for most of the user for sharing their techniques or displaying their works. Now, we move to the tutorial for creating your first website. (This article is for the Windows10 user only). This tutorial is referenced by <a target="_blank" rel="noopener" href="https://ed521.github.io/2019/07/hexo-install/">[教學] 使用 GitHub Pages + Hexo 來架設個人部落格</a></p>
+        
+          <p class="article-more-link">
+            <a href="/2021/01/18/Setup-a-website-through-github-x-Hexo/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://bnbsking.github.io/2021/01/18/Setup-a-website-through-github-x-Hexo/" data-id="ckk2o10di00039c7k3k548xpq" data-title="Setup a website through github x Hexo" class="article-share-link">Share</a>
+      <a data-url="https://bnbsking.github.io/2021/01/18/Setup-a-website-through-github-x-Hexo/" data-id="ckkb9oiab0004447kc9dl5o3z" data-title="Setup a website through github x Hexo" class="article-share-link">Share</a>
       
       
       
@@ -181,7 +211,7 @@ hexo s<br>```</li>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://bnbsking.github.io/2021/01/17/Untitled/" data-id="ckk2o10dg00029c7kd2qah6bx" data-title="Learning Markdown in 10 min" class="article-share-link">Share</a>
+      <a data-url="https://bnbsking.github.io/2021/01/17/Untitled/" data-id="ckkb9oia90003447k03ewex9t" data-title="Learning Markdown in 10 min" class="article-share-link">Share</a>
       
       
       
@@ -222,6 +252,10 @@ hexo s<br>```</li>
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/01/24/About-data-warehouse/">About data warehouse</a>
+          </li>
         
           <li>
             <a href="/2021/01/18/Setup-a-website-through-github-x-Hexo/">Setup a website through github x Hexo</a>

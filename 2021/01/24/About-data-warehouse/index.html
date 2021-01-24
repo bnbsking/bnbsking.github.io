@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>About data warehouse | Data science exhibition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Data warehouse (DW or DWH), also known as enterprise data warehouse (EDW), is a place that integrates data sources for some specific purpose. Since this note is written after self-learning in two days">
+<meta property="og:type" content="article">
+<meta property="og:title" content="About data warehouse">
+<meta property="og:url" content="https://bnbsking.github.io/2021/01/24/About-data-warehouse/index.html">
+<meta property="og:site_name" content="Data science exhibition">
+<meta property="og:description" content="Data warehouse (DW or DWH), also known as enterprise data warehouse (EDW), is a place that integrates data sources for some specific purpose. Since this note is written after self-learning in two days">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://bnbsking.github.io/images/database/dataPipeline.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/database/starSchema.png">
+<meta property="article:published_time" content="2021-01-24T12:15:15.000Z">
+<meta property="article:modified_time" content="2021-01-24T14:57:56.834Z">
+<meta property="article:author" content="James Chao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bnbsking.github.io/images/database/dataPipeline.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Data science exhibition" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Data science exhibition</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">short is better</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://bnbsking.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-About-data-warehouse" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/24/About-data-warehouse/" class="article-date">
+  <time class="dt-published" datetime="2021-01-24T12:15:15.000Z" itemprop="datePublished">2021-01-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      About data warehouse
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><font color=#FF0000>Data warehouse</font> (DW or DWH), also known as enterprise data warehouse (EDW), is a place that integrates data sources for some specific purpose. Since this note is written after self-learning in two days only, I will appreciate to adopt your advice if there is any defect or inaccuracy.</p>
+<a id="more"></a>
+
+<h1 id="Data-warehouse"><a href="#Data-warehouse" class="headerlink" title="Data warehouse"></a>Data warehouse</h1><p>With data being generated in overwhelming amounts today, it’s necessary to design a storage structure that make the query efficiently for different requirements. To explain the difference between the databases and data warehouse, we first discuss the following terminologies:</p>
+<table>
+<thead>
+<tr>
+<th>On-line transaction processing (<font color=#FF0000>OLTP</font>)</th>
+<th>On-line analytical processing (<font color=#FF0000>OLAP</font>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>low-end operation</td>
+<td>high-end analysis</td>
+</tr>
+<tr>
+<td>real-time</td>
+<td>long-term</td>
+</tr>
+<tr>
+<td>small (GB)</td>
+<td>large (TB)</td>
+</tr>
+<tr>
+<td>resemble operational data store (<font color=#FF0000>ODS</font>)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>databases, files</td>
+<td>data warehouse</td>
+</tr>
+<tr>
+<td>MySQL, MariaDB, MongoDB</td>
+<td>AWS</td>
+</tr>
+</tbody></table>
+<p>We can easily see that the common database is for collecting the frontline data, that must support efficient insertion, deletion, modification, etc. i.e. The transaction data, the ordering data, the signal data of equipment. On the contrary, we need to manage the data from different sources so that we can query them in a specific, easy and efficient way for long-term analysis.</p>
+<p>The standarization of dealing with data, so-called <font color=#FF0000>data pipeline</font> is shown as below:</p>
+<p><img src="/images/database/dataPipeline.png" alt="dataPipeline"></p>
+<p>There are four stages (layers) for managing the large amount of data. The first is the source layer, which collects real-time data in databases or files in different forms. The next step is the staging layer, also well-known as <font color=#FF0000>ETL</font> (extract-transform-load). To make access data more efficiently, the data must be well-preproccessed before insert into the data warehouse. The process for a huge system is exceeding complicate. Hence, some software for ETL is recommended. The design of data structure of the storage layer plays the most important role in the data pipeline due to the efficency of extracting data to dash board in the presentation layer. Let’s start it now.</p>
+<h1 id="Star-schema"><a href="#Star-schema" class="headerlink" title="Star schema"></a>Star schema</h1><p>The <font color=#FF0000>star schema</font> is the simplest way to model data warehouse systems. The center of the star can have one <font color=#FF0000>fact table</font> and a number of associated <font color=#FF0000>dimension tables</font>. The shape of their connections resembles a star.</p>
+<p><img src="/images/database/starSchema.png"></p>
+<p>The fact table records the measurements, metrics or facts about a business process, such as a transaction table. It is simple without hierarchy data. The grain, so-called granularity, refers to the size in which data fields are sub-divided. It determines the detail records in the fact table. For example, an address can be</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;address&#x3D;200 2nd Ave. South #358, St. Petersburg, FL 33701-4313 USA&quot;</span><br></pre></td></tr></table></figure>
+<p>or with fine granularity:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">street address &#x3D; 200 2nd Ave. South #358</span><br><span class="line">city &#x3D; St. Petersburg</span><br><span class="line">state &#x3D; FL</span><br><span class="line">postal code &#x3D; 33701-4313</span><br><span class="line">country &#x3D; USA</span><br></pre></td></tr></table></figure>
+<p>The dimensional table stores the descriptive data, i.e. date, branch, product. <font color=#0000FF>The columns of fact table reference the foreign key to each dimensional tables and the combinations of the foreign keys is the primary key of the fact table</font>. The structure ensures that there is no duplicated data in fact table and forbid to insert data which contains key doesn’t exist in certain dimensional table. Likewise, to prevent the repeating data in the dimensional table, we need a column for indexing. In general, if the raw data contains the primary key of a column, it is called <font color=#FF0000> natural key </font> or <font color=#FF0000> business key</font>. However, it is not suitable to used it as primary key if the records is much less than the corresponding size of the hash table. For instance, the ID number is natural key due to its uniqueness, but if there are several hundreds of people only, the degits of ID number spans so large hash table that extremely waste the memory space. An alternative is to add a smaller size column without meaning called <font color=#FF0000>surrogate key</font>. The dimensional tables can be normalized as hierarchy structure and the relations become <font color=#FF0000> snowflake schema</font>.</p>
+<h1 id="Distributed-system"><a href="#Distributed-system" class="headerlink" title="Distributed system"></a>Distributed system</h1><p>The big data, is the large amount of data that cannot load into a single computer. That is, the techniques to manage the distributed data. There are many open sources software to setup the environment such as the NoSQL database MongoDB, and the distributed system Hadoop or Spark. However, I have spent lots of time so far and run out of time now. so catch you later. The other terminologies:</p>
+<ul>
+<li>HDFS</li>
+<li>data virtualization</li>
+<li>poly base</li>
+</ul>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://datawarehouseinfo.com/data-warehouse-architecture/">https://datawarehouseinfo.com/data-warehouse-architecture/</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Extract,_transform,_load">https://en.wikipedia.org/wiki/Extract,_transform,_load</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.holistics.io/blog/data-lake-vs-data-warehouse-vs-data-mart/">https://www.holistics.io/blog/data-lake-vs-data-warehouse-vs-data-mart/</a></li>
+<li><a target="_blank" rel="noopener" href="https://social.technet.microsoft.com/Forums/en-US/0c946b78-fd1f-4207-9f7b-c5eb0081f509/what-is-business-key?forum=sqldatawarehousing">https://social.technet.microsoft.com/Forums/en-US/0c946b78-fd1f-4207-9f7b-c5eb0081f509/what-is-business-key?forum=sqldatawarehousing</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.guru99.com/fact-table-vs-dimension-table.html">https://www.guru99.com/fact-table-vs-dimension-table.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.guru99.com/star-snowflake-data-warehousing.html">https://www.guru99.com/star-snowflake-data-warehousing.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.tibame.com/?p=1752">https://blog.tibame.com/?p=1752</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Granularity">https://en.wikipedia.org/wiki/Granularity</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://bnbsking.github.io/2021/01/24/About-data-warehouse/" data-id="ckkb9oia70002447k7gl09gkb" data-title="About data warehouse" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/18/Setup-a-website-through-github-x-Hexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Setup a website through github x Hexo</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/24/About-data-warehouse/">About data warehouse</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/18/Setup-a-website-through-github-x-Hexo/">Setup a website through github x Hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/17/Untitled/">Learning Markdown in 10 min</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 James Chao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
