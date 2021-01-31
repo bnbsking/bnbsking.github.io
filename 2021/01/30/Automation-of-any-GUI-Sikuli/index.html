@@ -6,20 +6,25 @@
   
   <title>Automation of any GUI - Sikuli | Data science exhibition</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Sikuli is a software with internal IDE to manipulate GUI automatically. The automation and image recognition help us saves a lot of time to do many regular and trivial tasks. It is based on java and i">
+  <meta name="description" content="Sikuli is a software with internal IDE to manipulate GUI automatically. The automation and image recognition help us saves a lot of time to do many regular and trivial tasks. It is based on Java and i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Automation of any GUI - Sikuli">
 <meta property="og:url" content="https://bnbsking.github.io/2021/01/30/Automation-of-any-GUI-Sikuli/index.html">
 <meta property="og:site_name" content="Data science exhibition">
-<meta property="og:description" content="Sikuli is a software with internal IDE to manipulate GUI automatically. The automation and image recognition help us saves a lot of time to do many regular and trivial tasks. It is based on java and i">
+<meta property="og:description" content="Sikuli is a software with internal IDE to manipulate GUI automatically. The automation and image recognition help us saves a lot of time to do many regular and trivial tasks. It is based on Java and i">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://bnbsking.github.io/images/sikuli/IDE.png">
 <meta property="og:image" content="https://bnbsking.github.io/images/sikuli/IDE2.png">
 <meta property="og:image" content="https://bnbsking.github.io/images/sikuli/python.png">
 <meta property="og:image" content="https://bnbsking.github.io/images/sikuli/export.png">
 <meta property="og:image" content="https://bnbsking.github.io/images/sikuli/execute.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/sikuli/codeExample.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/sikuli/codeExample2.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/sikuli/screenshots.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/sikuli/automatic.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/sikuli/automatic2.png">
 <meta property="article:published_time" content="2021-01-30T12:25:03.000Z">
-<meta property="article:modified_time" content="2021-01-30T14:24:33.651Z">
+<meta property="article:modified_time" content="2021-01-31T05:50:37.568Z">
 <meta property="article:author" content="James Chao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://bnbsking.github.io/images/sikuli/IDE.png">
@@ -105,7 +110,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Sikuli is a software with internal IDE to manipulate GUI automatically. The automation and image recognition help us saves a lot of time to do many regular and trivial tasks. It is based on java and its package Jython. In this article, you will learn the installation on the Windows platform, basic operations and execution of the script without launching GUI. That’s get start it.</p>
+        <p>Sikuli is a software with internal IDE to manipulate GUI automatically. The automation and image recognition help us saves a lot of time to do many regular and trivial tasks. It is based on Java and its package Jython. In this article, you will learn the installation on the Windows platform, commonly used operations, execution of the script without launching GUI, an example of fully automatic execution. That’s get start it.</p>
 <a id="more"></a>
 
 <h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><ol>
@@ -117,33 +122,26 @@
 <p><img src="/images/sikuli/IDE.png"></p>
 <h1 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h1><h2 id="Quick-start"><a href="#Quick-start" class="headerlink" title="Quick start"></a>Quick start</h2><ol>
 <li>In the beginning, we have to switch the resolution to 1024*768</li>
-<li>Launch the Sikuli and the windows calculator as example</li>
+<li>Launch the Sikuli and the Windows calculator as example</li>
 <li>Take a screenshot to a button of the calculator  </li>
 <li>Type the command <code>click(YourPicture)</code> and execute it.</li>
 </ol>
-<p><img src="/images/sikuli/IDE2.png" alt="a"></p>
-<h2 id="Common-operations"><a href="#Common-operations" class="headerlink" title="Common operations"></a>Common operations</h2><p><font color=#FF0000>The sikuli IDE supports not only the intrinsic commands (e.g.click) but also the python commands</font>.</p>
-<p><img src="/images/sikuli/python.png"></p>
+<p><img src="/images/sikuli/IDE2.png"></p>
+<h2 id="Common-operations"><a href="#Common-operations" class="headerlink" title="Common operations"></a>Common operations</h2><p><font color=#FF0000>The sikuli IDE supports not only the intrinsic commands (e.g.click) but also the Python commands</font>.</p>
+<p><img src="/images/sikuli/python.png" alt="Code example"></p>
 <p>If you are familiar with python, you can write a sikuli script easily by simple commands such as if-else, for, while. If not, you can learn it from many resources in just several ten minutes cuz its easy. Here I list the commonly used command as following.</p>
 <html>
     <table>
           <tr><td>Commands</td><td>Input</td><td>Output</td></tr>
           <tr><td>click()</td><td>screenshot</td><td>Click the picture (Error while the picture does not exist)</td></tr>
-          <tr><td>exists()</td><td>screenshot</td><td>return whether the picture exsists as bool</td></tr>
-          <tr><td>region()</td><td>region</td><td>return an object with several attributes such as click.</td></tr>
+          <tr><td>doubleClick()</td><td>screenshot</td><td>Double click the picture (Error while the picture does not exist)</td></tr>
+          <tr><td>wait()</td><td>int</td><td>Wait the seconds</td></tr>
+          <tr><td>exists()</td><td>screenshot</td><td>Return whether the picture exsists as bool</td></tr>
+          <tr><td>region()</td><td>region</td><td>Return an object with several attributes such as click.</td></tr>
           <tr><td rowspan="2">type()</td><td>string</td><td>Enter the string</td></tr>
-          <tr><td>Key.ENTER, KEY.SPACE, etc.</td><td>press the keyboard</td></tr>
+          <tr><td>Key.ENTER, KEY.SPACE, etc.</td><td>Press the keyboard</td></tr>
     </table>
 </html>
-
-<!--
-| commands | input | output |
-|-|-|-|
-| click() | screenshot | Click the picture (Error while the picture does not exist) |
-| exists() | screenshot | return whether the picture exsists as bool |
-| region() | region | return an object with several attributes such as click. |
-| type() | string, Key.ENTER, KEY.SPACE, etc. | Enter the string or press the keyboard |
--->
 
 <h1 id="Export-the-script-as-a-program"><a href="#Export-the-script-as-a-program" class="headerlink" title="Export the script as a program"></a>Export the script as a program</h1><p>Once you want to execute the program without artificial works (launch IDE and press the execute button), we can export the script as a program.</p>
 <ol>
@@ -155,12 +153,40 @@
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar sikulixide-2.0.4.jar -r myscript.skl</span><br></pre></td></tr></table></figure>
 <p><img src="/images/sikuli/execute.png"></p>
-<p>The script will be executed by the command. Furthermore, if you know how to manipulate batch file or shell script as well as the setting of automatic execution after login the desktop. You can do the whole process automatically, that is, the only thing you need is to turn on the computer. More of the automation will be introduced in the nearly future.</p>
+<p>The script will be executed by the command. Furthermore, if you know how to manipulate batch file or shell script as well as the setting of automatic execution after login the desktop. You can do the whole process automatically, that is, the only thing you need to do is to turn on the computer. See more in the following example.</p>
+<h1 id="An-example"><a href="#An-example" class="headerlink" title="An example"></a>An example</h1><p>Here is an example that I write for automatically login a game “Tower of Saviors”. To let the debug step become more convenient, I make the script write the logs. Moreover, to ensure the target picture shown on the screen, we have to wait for a few seconds before executing a next Sikuli command.</p>
+<p><img src="/images/sikuli/codeExample.png"></p>
+<p><img src="/images/sikuli/codeExample2.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">log = <span class="string">&quot;C:\Users\your_name\Desktop\Sikuli\log.txt&quot;</span></span><br><span class="line">os.system(<span class="string">&quot;echo start %date% %time% &gt;&gt; &quot;</span>+log)</span><br><span class="line"></span><br><span class="line">wait(<span class="number">2</span>)</span><br><span class="line">doubleClick(<span class="string">&quot;1612020451846.png&quot;</span>)</span><br><span class="line">wait(<span class="number">75</span>)</span><br><span class="line"></span><br><span class="line">R = <span class="literal">None</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myclick</span>(<span class="params">pic, name, delay=<span class="number">7</span>, rai=<span class="literal">False</span></span>):</span></span><br><span class="line">    <span class="keyword">global</span> R</span><br><span class="line">    exist = R.exists(pic)</span><br><span class="line">    <span class="keyword">if</span> exist:</span><br><span class="line">        R.click(pic)</span><br><span class="line">        wait(delay)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        os.system(<span class="string">&quot;echo &#123;&#125; not found &gt;&gt; &quot;</span>.<span class="built_in">format</span>(name)+log)</span><br><span class="line">        <span class="keyword">if</span> rai:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(name+<span class="string">&quot; not found&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(name+<span class="string">&quot; not found&quot;</span>)</span><br><span class="line"></span><br><span class="line">R = Region(Region(<span class="number">261</span>,<span class="number">40</span>,<span class="number">446</span>,<span class="number">687</span>))</span><br><span class="line">myclick(<span class="string">&quot;1612020693302.png&quot;</span>, <span class="string">&quot;enlarge&quot;</span>)</span><br><span class="line">myclick(<span class="string">&quot;1612020801498.png&quot;</span>, <span class="string">&quot;start&quot;</span>)</span><br><span class="line">myclick(<span class="string">&quot;1612017836334.png&quot;</span>, <span class="string">&quot;bigNews&quot;</span>)</span><br><span class="line">myclick(<span class="string">&quot;1612018419083.png&quot;</span>, <span class="string">&quot;smallNews&quot;</span>)</span><br><span class="line">myclick(<span class="string">&quot;1612018508468.png&quot;</span>, <span class="string">&quot;loginDays&quot;</span>)</span><br><span class="line">myclick(<span class="string">&quot;1612056546155.png&quot;</span>, <span class="string">&quot;monthlyPack&quot;</span>)</span><br><span class="line"></span><br><span class="line">os.system(<span class="string">&quot;echo finish %date% %time% &gt;&gt; &quot;</span>+log)</span><br><span class="line">os.system(<span class="string">&quot;echo ---------------------------------- &gt;&gt; &quot;</span>+log</span><br></pre></td></tr></table></figure>
+<p>P.S. The screenshots are saved in the folder <code>C:\Users\yoor_name\Documents\first.sikuli</code></p>
+<p><img src="/images/sikuli/screenshots.png"></p>
+<p>After we suceed to execute the script and export the script into a <code>.skl</code> file in a folder (same as Sikuli folder is recommended), to execute the script automatically as you login your desktop:</p>
+<ol>
+<li><p>Create a text file and alter the extension file name from <code>.txt</code> to <code>.bat</code> at the same folder as Sikuli.</p>
+</li>
+<li><p>Right click the <code>.bat</code> and edit it by text editor. Type the following code.</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> C:\Users\your_name\Desktop\Sikuli</span><br><span class="line">java -jar sikulixide-2.0.4.jar -r myscript.skl</span><br></pre></td></tr></table></figure>
+<p> <img src="/images/sikuli/automatic.png"></p>
+<ol start="3">
+<li><p>Go to <code>C:\Users\your_name\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code> and create a text file followed by altering the extension file name from <code>.txt</code> to <code>.vbs</code>.</p>
+<ul>
+<li>Scripts (<code>.bat</code>, <code>.sh</code>, <code>.vbs</code>, etc.) in this folder will be executed after you login.</li>
+<li><code>.vbs</code> is the caller of <code>.bat</code> which let it executes without CMD windows. (It’s important cuz we don’t want the CMD windows cover the picture that detected in Sikuli script)</li>
+</ul>
+</li>
+<li><p>Right click the <code>.vbs</code> and edit it by text editor. Type the following code.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Set WshShell = CreateObject(<span class="string">&quot;WScript.Shell&quot;</span>) </span><br><span class="line">WshShell.Run chr(34) &amp; <span class="string">&quot;C:\Users\your_name\Desktop\Sikuli\startTOS.bat&quot;</span> &amp; Chr(34), 0</span><br><span class="line">Set WshShell = Nothingl</span><br></pre></td></tr></table></figure>
+<p> <img src="/images/sikuli/automatic2.png"></p>
+</li>
+</ol>
+<p>Now, you can logout then login. You will see the Sikuli scripts executes automatically.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://bnbsking.github.io/2021/01/30/Automation-of-any-GUI-Sikuli/" data-id="ckkjt5ref0002jc7k01g6fncs" data-title="Automation of any GUI - Sikuli" class="article-share-link">Share</a>
+      <a data-url="https://bnbsking.github.io/2021/01/30/Automation-of-any-GUI-Sikuli/" data-id="ckkkqa94r00016s7kddd06qg3" data-title="Automation of any GUI - Sikuli" class="article-share-link">Share</a>
       
       
       
