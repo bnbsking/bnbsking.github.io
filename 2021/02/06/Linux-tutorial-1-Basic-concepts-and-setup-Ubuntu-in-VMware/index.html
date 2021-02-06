@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Linux tutorial 1 - Basic concepts and setup Ubuntu in VMware | Data science exhibition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="From now on, I will write the tutorial of Linux, which introduce the most commonly used techniques according to my experience in software development. Hope that I can help you to improve the skill for">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux tutorial 1 - Basic concepts and setup Ubuntu in VMware">
+<meta property="og:url" content="https://bnbsking.github.io/2021/02/06/Linux-tutorial-1-Basic-concepts-and-setup-Ubuntu-in-VMware/index.html">
+<meta property="og:site_name" content="Data science exhibition">
+<meta property="og:description" content="From now on, I will write the tutorial of Linux, which introduce the most commonly used techniques according to my experience in software development. Hope that I can help you to improve the skill for">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/vmware.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/desktop.png">
+<meta property="article:published_time" content="2021-02-06T02:17:44.000Z">
+<meta property="article:modified_time" content="2021-02-06T13:28:33.818Z">
+<meta property="article:author" content="James Chao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bnbsking.github.io/images/linux/vmware.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Data science exhibition" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Data science exhibition</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">short is better</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://bnbsking.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Linux-tutorial-1-Basic-concepts-and-setup-Ubuntu-in-VMware" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/02/06/Linux-tutorial-1-Basic-concepts-and-setup-Ubuntu-in-VMware/" class="article-date">
+  <time class="dt-published" datetime="2021-02-06T02:17:44.000Z" itemprop="datePublished">2021-02-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Linux tutorial 1 - Basic concepts and setup Ubuntu in VMware
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>From now on, I will write the tutorial of Linux, which introduce the most commonly used techniques according to my experience in software development. Hope that I can help you to improve the skill for working as soon as possible.</p>
+<p>The guide line includes:</p>
+<ul>
+<li><a href="#top">Linux tutorial 1 - Basic concepts and setup Ubuntu18.04 in VMware</a></li>
+<li><a href="">Linux tutorial 2 - File system and basic commands</a></li>
+<li><a href="">Linux tutorial 3 - Authority, vim and shell script</a></li>
+<li><a href="">Linux tutorial 4 - Automation and environmental path</a></li>
+<li><a href="">Linux tutorial 5 - SSH and SCP: Safe connection with other machine</a></li>
+</ul>
+<a id="more"></a>
+
+<h1 id="The-relations-between-operating-systems"><a href="#The-relations-between-operating-systems" class="headerlink" title="The relations between operating systems"></a>The relations between operating systems</h1><p>The well-known Linux is an open-source operating system (abbreviated to OS) originate from Unix, an OS developed in the 1970s at the Bell Labs. Due to the motivation of sharing the software in free, the Finland engineer Linus proceed to develop the Linux kernel, and published the result in 1991. The linux kernel are widely used in different released version by many different groups since then.</p>
+<p>The main branches of linux are Debian and Redhat. Most of the commands share between them except for installing packages. </p>
+<html>
+    <table>
+          <tr> <td style="font-weight:bold; align=center; valign=center">Branches</td>
+                  <td style="font-weight:bold;">Package manager</td>
+                  <td style="font-weight:bold;">Package install format</td>
+                <td style="font-weight:bold;">OS</td>
+                <td style="font-weight:bold;">Open-source</td>
+                  <td style="font-weight:bold;">Script format</td>
+          <tr> <td>Windows</td> <td>choco</td> <td>.msi</td> <td>Windows</td> <td>X</td> <td>.bat</td> </tr>
+          <tr> <td rowspan="2">Linux-Debian</td> <td rowspan="2">apt</td> <td rowspan="2">.deb</td>  <td>Ubuntu</td>  <td>O</td>  <td>.sh</td> </tr>
+          <tr> <td>MacOS</td> <td>X</td>  <td>.sh</td> </tr>
+          <tr> <td rowspan="3">Linux-Redhat</td> <td rowspan="3">yum</td> <td rowspan="3">.rpm</td>  <td>Redhat</td>  <td>X</td>  <td>.sh</td> </tr>
+          <tr> <td>CentOS</td> <td>O</td> <td>.sh</td> </tr>
+          <tr> <td>Fedora</td> <td>O</td>  <td>.sh</td> </tr>
+    </table>
+</html>
+
+<p>The frequently used OS for software development is Ubuntu or CentOS. This tutorial is based on <font color=#FF0000>Ubuntu</font>.</p>
+<h1 id="Why-Linux"><a href="#Why-Linux" class="headerlink" title="Why Linux?"></a>Why Linux?</h1><p>There are several reasons for learning Linux essentially. First, Ubuntu is open-source and supported by strong communities, that is, most of the solution can be found in the internet. Second, the operations must be executed automatically in every products, Linux is more easy and reliable to execute command lines without GUI (executes commands are faster than GUI as well definitely). Third, Linux is much more stable than Windows because Linux will not update itself automatically, therefore, we can ensure the software behaves well until the hardware malfunction. All in all, to become a software engineer, it is necessary to learn Linux.</p>
+<h1 id="Virtual-machine"><a href="#Virtual-machine" class="headerlink" title="Virtual machine"></a>Virtual machine</h1><p>The simplest way to learn Linux operations on Windows platform is to install a virtual machine without refilling your computer. Virtual machine is a commnly-used techniques to seperate the OS’s in a computer. Most of the testing program are executed in the virtual machine because the original OS (so-called <font color=#FF0000>host OS</font>) is save even if the testing program leads to fatal damage in the OS in virtual machine (so-called <font color=#FF0000>guest OS</font>). In this tutorial, we will install Ubuntu as guest OS based on Windows host.</p>
+<h1 id="Setup-Ubuntu-in-VMware"><a href="#Setup-Ubuntu-in-VMware" class="headerlink" title="Setup Ubuntu in VMware"></a>Setup Ubuntu in VMware</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://www.vmware.com/tw/products/workstation-player/workstation-player-evaluation.html">Download and install VMware Workstation.</a><br><br>Just keep clicking <code>next</code> during the installation step and it will complete easily.</li>
+<li><a target="_blank" rel="noopener" href="https://releases.ubuntu.com/18.04.5/?_ga=2.253247179.395859076.1612616205-1537382128.1612616205">Download Ubuntu</a><br><br>Select the desktop image with filename extension <code>.iso</code>. e.g. ubuntu-18.04.5-desktop-amd64.iso</li>
+<li>Launch VMware then install Ubuntu image in the virtual machine<ul>
+<li>Click “create a new virtual machine”</li>
+<li>Select the Ubuntu image</li>
+<li>Enter your username and password </li>
+<li>Check the memory, disk space allocation</li>
+<li>Launch the virtual machine and install Ubuntu<ul>
+<li>After the installation. Click Player -&gt; Manage -&gt; Install VMware Tools</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><img src="/images/linux/vmware.png"></p>
+<p>You will see the Desktop if the installation complete.</p>
+<p><img src="/images/linux/desktop.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://bnbsking.github.io/2021/02/06/Linux-tutorial-1-Basic-concepts-and-setup-Ubuntu-in-VMware/" data-id="ckktr7cmv0002507k939ea17n" data-title="Linux tutorial 1 - Basic concepts and setup Ubuntu in VMware" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/30/Automation-of-any-GUI-Sikuli/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Automation of any GUI - Sikuli</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Github-x-Hexo/">Github x Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/06/Linux-tutorial-1-Basic-concepts-and-setup-Ubuntu-in-VMware/">Linux tutorial 1 - Basic concepts and setup Ubuntu in VMware</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/30/Automation-of-any-GUI-Sikuli/">Automation of any GUI - Sikuli</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/24/About-data-warehouse/">About data warehouse</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/18/Setup-a-website-through-github-x-Hexo/">Setup a website through github x Hexo</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/17/Learning_Markdown_in_10_min/">Learning Markdown in 10 min</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 James Chao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
