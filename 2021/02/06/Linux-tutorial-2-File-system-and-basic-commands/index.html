@@ -15,8 +15,10 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://bnbsking.github.io/images/linux/file.png">
 <meta property="og:image" content="https://bnbsking.github.io/images/linux/root.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/command1.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/command2.png">
 <meta property="article:published_time" content="2021-02-06T13:34:14.000Z">
-<meta property="article:modified_time" content="2021-02-06T15:05:02.845Z">
+<meta property="article:modified_time" content="2021-02-07T13:34:31.444Z">
 <meta property="article:author" content="James Chao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://bnbsking.github.io/images/linux/file.png">
@@ -110,12 +112,81 @@
 
 <p><img src="/images/linux/root.png"></p>
 <p>Here I briefly introduce the commonly accessed folder according to my experience.</p>
-<p>| folder | full name | description | files |<br>|-|<br>| bin | binary files | The folder contains executable files corresponds to the built-in commands in Linux | ls, cd, mv, cp, rm |<br>| boot | boot | The software (e.g. VMware, Rufus) that write the image file <code>.iso</code> into the bootable system containing this folder | grub |<br>| dev | devices | Stores the hardware information | disk, tty |<br>| etc | et cetra (meaningless) | The system configuration placed | crontab, sudoers, rc.local |<br>| home | home | Contains the users with Desktop for each | your_name |<br>| mnt | mount | The folder that mount external devices such as flash drives, SD cards, and even remote folders | — |<br>| usr | unix system resources | The high-level package relative to OS such as Python | local/lib/python3.6 | </p>
-<h1 id="Basic-commands"><a href="#Basic-commands" class="headerlink" title="Basic commands"></a>Basic commands</h1>
+<table>
+<thead>
+<tr>
+<th>folder</th>
+<th>full name</th>
+<th>description</th>
+<th>files</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bin</td>
+<td>binary files</td>
+<td>The folder contains executable files corresponds to the built-in commands in Linux</td>
+<td>ls, cd, mv, cp, rm</td>
+</tr>
+<tr>
+<td>boot</td>
+<td>boot</td>
+<td>The software (e.g. VMware, Rufus) that write the image file <code>.iso</code> into the bootable system containing this folder</td>
+<td>grub</td>
+</tr>
+<tr>
+<td>dev</td>
+<td>devices</td>
+<td>Stores the hardware information</td>
+<td>disk, tty</td>
+</tr>
+<tr>
+<td>etc</td>
+<td>et cetra (meaningless)</td>
+<td>The system configuration placed</td>
+<td>crontab, sudoers, rc.local</td>
+</tr>
+<tr>
+<td>home</td>
+<td>home</td>
+<td>Contains the users with Desktop for each</td>
+<td>your_name</td>
+</tr>
+<tr>
+<td>mnt</td>
+<td>mount</td>
+<td>The folder that mount external devices such as flash drives, SD cards, and even remote folders</td>
+<td>—</td>
+</tr>
+<tr>
+<td>usr</td>
+<td>unix system resources</td>
+<td>The high-level package relative to OS such as Python</td>
+<td>local/lib/python3.6</td>
+</tr>
+</tbody></table>
+<h1 id="Basic-commands"><a href="#Basic-commands" class="headerlink" title="Basic commands"></a>Basic commands</h1><p>The most important thing to learn operating system is the commands in terminal (it is called CMD in Windows). Press <code>ctrl+Alt+T</code> to open it. The first command introduced is <code>pwd</code> stands for “print working directory”, i.e. the path of the current directory. By default, you will see <code>/home/your_name</code>. This path is also called “user home directory”, also denoted as “~”.</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pwd</span><br></pre></td></tr></table></figure>
+<p>The next command is <code>ls</code> which is “listing”. You will see all the file in the current directory. You can also use <code>-a</code> argument to see the hidden file which the name are begin with a dot. Moreover, you list the files of a specified path as an argument.  </p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line">ls -a</span><br><span class="line">ls &lt;path&gt;</span><br></pre></td></tr></table></figure>
+<p>Here is an example.</p>
+<p><img src="/images/linux/command1.png"></p>
+<p>Then, the command <code>cd</code> means “change directory”. A target path must follow the command. We can use <code>.</code> or <code>..</code> as well. The former is the current folder and the latter is the parent folder. </p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;path&gt;</span><br></pre></td></tr></table></figure>
+<p>Combine all the commands as example.</p>
+<p><img src="/images/linux/command2.png"></p>
+<ul>
+<li>apt vim cat touch</li>
+<li>chmod chown echo</li>
+<li>cp mkdir mv rm</li>
+<li>date</li>
+<li>dd df dmseg ping</li>
+<li>grep</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://bnbsking.github.io/2021/02/06/Linux-tutorial-2-File-system-and-basic-commands/" data-id="ckktuqrav0002a47kb4ayfy9j" data-title="Linux tutorial 2 - File system and basic commands" class="article-share-link">Share</a>
+      <a data-url="https://bnbsking.github.io/2021/02/06/Linux-tutorial-2-File-system-and-basic-commands/" data-id="ckkv6vx770004s07khl33dzas" data-title="Linux tutorial 2 - File system and basic commands" class="article-share-link">Share</a>
       
       
       
