@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>AI image - object detection by Yolov3 x Keras | Data science exhibition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="There are three main applications of AI. Images, data, and language. The image processing includes several tasks such as image classification, image dimension reduction, image generation, style transf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI image - object detection by Yolov3 x Keras">
+<meta property="og:url" content="https://bnbsking.github.io/2021/02/16/AI-image-object-detection-by-Yolov3-x-Keras/index.html">
+<meta property="og:site_name" content="Data science exhibition">
+<meta property="og:description" content="There are three main applications of AI. Images, data, and language. The image processing includes several tasks such as image classification, image dimension reduction, image generation, style transf">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://bnbsking.github.io/images/yolov3/example.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/yolov3/git1.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/yolov3/git2.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/yolov3/main.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/yolov3/images.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/yolov3/label.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/yolov3/dataOrder.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/yolov3/classes.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/yolov3/classes2.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/yolov3/data.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/yolov3/predictPath.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/yolov3/weight.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/yolov3/result.png">
+<meta property="article:published_time" content="2021-02-16T11:50:26.000Z">
+<meta property="article:modified_time" content="2021-02-16T13:16:20.967Z">
+<meta property="article:author" content="James Chao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bnbsking.github.io/images/yolov3/example.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Data science exhibition" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Data science exhibition</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">short is better</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://bnbsking.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-AI-image-object-detection-by-Yolov3-x-Keras" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/02/16/AI-image-object-detection-by-Yolov3-x-Keras/" class="article-date">
+  <time class="dt-published" datetime="2021-02-16T11:50:26.000Z" itemprop="datePublished">2021-02-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      AI image - object detection by Yolov3 x Keras
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>There are three main applications of AI. Images, data, and language. The image processing includes several tasks such as image classification, image dimension reduction, image generation, style transfer, object detection and segmentation. The object detection is a function that feeds image as input, and output several bounding boxes with its image class and confidence, which commonly used in monitoring.</p>
+<p>The main stream object detection algorithms includes FasterRCNN, SSD and Yolo. In this article, you will learn the fundamental principle of Yolo version 3, its environment installation and the implementation.</p>
+<p><img src="/images/yolov3/example.png"></p>
+<a id="more"></a>
+
+<h1 id="Fundamental"><a href="#Fundamental" class="headerlink" title="Fundamental"></a>Fundamental</h1><h1 id="Environment-Setting"><a href="#Environment-Setting" class="headerlink" title="Environment Setting"></a>Environment Setting</h1><p>System requirements </p>
+<ul>
+<li>Anaconda</li>
+<li>Python=3.5</li>
+<li>Tensorflow=1.6 or Tensorflow-gpu=1.6</li>
+<li>Keras=2.1.5</li>
+<li>(optional) GPU environment</li>
+</ul>
+<ol>
+<li>Create an virtual environment for python=3.5 with name yolov3 for instance. Then install the above requirement.<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create -n yolov3 python=3.5</span><br><span class="line">conda activate yolov3</span><br><span class="line">python -m pip install --upgrade pip</span><br><span class="line">pip install labelImg pillow tensorflow==1.6 keras==2.1.5 matplotlib h5py</span><br></pre></td></tr></table></figure>
+The labelImg is a free tool that help us to do the labeling for object detection conveniently. The labeling of a image in object detection problem includes several bounding box with its belongs class.</li>
+<li>Create a directory and open CMD. Then, use git to clone the framework.<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/OmniXRI/OpenVINO_RealSense_HarvestBot</span><br></pre></td></tr></table></figure>
+<img src="/images/yolov3/git1.png"><br><img src="/images/yolov3/git2.png"><br>Not all the files cloned from github will be used. To make it simpler, move all the files in the folder <code>my_yolo3</code> to the New folder and delete the others.</li>
+<li>Download the <a target="_blank" rel="noopener" href="https://pjreddie.com/media/files/yolov3.weights">weight</a> to the folder. So all the files are same as the following.<br><img src="/images/yolov3/main.png"></li>
+<li>Convert the weight to the format for Keras.<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python convert.py -w yolov3.cfg yolov3.weights model_data/yolo_weights.h5</span><br></pre></td></tr></table></figure>
+<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1></li>
+</ol>
+<p>Here I download 20 pictures of cats and dogs. The goal is to do the two classes object detection for them.</p>
+<ol>
+<li><p>Put the images into <code>VOC2007/JPEGImages</code><br><img src="/images/yolov3/images.png"></p>
+</li>
+<li><p>Launch the labeling tool in terminal.</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">labelImg</span><br></pre></td></tr></table></figure></li>
+<li><p>Click “change save directory” and specify the folder “VOC2007/JPEGImages”. Next, click “open directory” and specify the folder “VOC2007/Annotations”. Now, we can label all the images (press <code>w</code> to start labeling), and you will see the output format <code>.xml</code> in “VOC2007/Annotations”.<br><img src="/images/yolov3/label.png"></p>
+</li>
+<li><p>Execute <code>python my_dataset.py</code>. It will load the annotations and random generate the train index, val index, test index in “VOC2007/ImageSets/Main”.<br><img src="/images/yolov3/dataOrder.png"></p>
+</li>
+<li><p>Modify <code>model_data/my_classes.txt</code>. Change the classes to dog and cat.<br><img src="/images/yolov3/classes.png"></p>
+</li>
+<li><p>Modify same thing in line 6 of <code>my_voc_annotation.py</code>. Then execute <code>python my_voc_annotation.py</code> to generate the data with labels.<br><img src="/images/yolov3/classes2.png"><br><img src="/images/yolov3/data.png"></p>
+</li>
+<li><p>Open the <code>my_train.py</code> and setting some parameters before training.</p>
+<ul>
+<li>modify the weights path to “model_data/trained_weights_stage_1.h5” in line 32 if you are doing transfer learning (skip this step first time).</li>
+<li>delete callback in line64</li>
+<li>change True to False in line69</li>
+<li>change epoch and learning rate if needed (you can set epoch=1 for first time)<br>We can start training now.<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python my_train.py</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>During the training, we can modify the predicting script <code>my_yolo.py</code>. The only one thing need to change is the path in line 216.<br><img src="/images/yolov3/predictPath.png"><br>After the training finish, we can see the weight <code>logs/000/trained_weights_stage_1.h5</code>. Bring the weight to the folder model_data.<br><img src="/images/yolov3/weight.png"></p>
+</li>
+<li><p>Finally execute the inference script to obtain the result.</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python my_yolo.py</span><br></pre></td></tr></table></figure>
+<p><img src="/images/yolov3/result.png"></p>
+</li>
+</ol>
+<p>If the result is not well, go back to the step 7 and doing transfer learning.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://bnbsking.github.io/2021/02/16/AI-image-object-detection-by-Yolov3-x-Keras/" data-id="ckl81850q0000gk7kepi95sgx" data-title="AI image - object detection by Yolov3 x Keras" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/02/16/Linux-tutorial-5-SSH-and-SCP-Safe-connection-with-other-machines/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux tutorial 5 - SSH and SCP: Safe connection with other machines</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Github-x-Hexo/">Github x Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/16/AI-image-object-detection-by-Yolov3-x-Keras/">AI image - object detection by Yolov3 x Keras</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/16/Linux-tutorial-5-SSH-and-SCP-Safe-connection-with-other-machines/">Linux tutorial 5 - SSH and SCP: Safe connection with other machines</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/15/Linux-tutorial-4-Automation-and-environmental-path/">Linux tutorial 4 - Automation and environmental path</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/14/Linux-tutorial-3-Authority-vim-and-shell-script/">Linux tutorial 3 - Authority, vim and shell script</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/Linux-tutorial-2-File-system-and-basic-commands/">Linux tutorial 2 - File system and basic commands</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 James Chao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
