@@ -18,8 +18,16 @@
 <meta property="og:image" content="https://bnbsking.github.io/images/linux/command9.png">
 <meta property="og:image" content="https://bnbsking.github.io/images/linux/sh1.png">
 <meta property="og:image" content="https://bnbsking.github.io/images/linux/sh2.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/sh3.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/sh4.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/sh5.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/sh6.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/sh7.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/sh8.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/sh9.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/sh10.png">
 <meta property="article:published_time" content="2021-02-14T12:44:00.000Z">
-<meta property="article:modified_time" content="2021-02-14T13:42:28.419Z">
+<meta property="article:modified_time" content="2021-02-15T15:13:58.758Z">
 <meta property="article:author" content="James Chao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://bnbsking.github.io/images/linux/command7.png">
@@ -112,31 +120,142 @@
         <p>We are going to write a program to execute the commands we have learned. There are three things need to understand beforehand, authority, vim and shell script. </p>
 <a id="more"></a>
 
-<h1 id="Authority"><a href="#Authority" class="headerlink" title="Authority"></a>Authority</h1><p>The most cardinal feature in Linux is the authority. We can use <code>ls -l</code> or <code>ll</code> to list the file and its permission in the current working directory.</p>
+<h1 id="Authority"><a href="#Authority" class="headerlink" title="Authority"></a>Authority</h1><p>The most cardinal feature in Linux is the authority. We can use <code>ls -l</code> or <code>ll</code> to list the file and its permission in the current working directory. The owner and the group owner are shown at the third and the fourth column. </p>
 <p><img src="/images/linux/command7.png"></p>
-<p>The first column have 10 digits. The first one is <code>d</code> or <code>-</code> that means whether it is a directory. The second to fourth digit is the permission of the file’s owner, the five digit to the seven digit is the permission of the file’s group owner, and the last digit is the permission of the others. </p>
-<p>The owner and the group owner belongs to the third and the fourth column. <code>r</code> refers to readable, <code>w</code> is writable and <code>x</code> is executable. Since the digit are all in boolean type, it can be presented as three decimal number with each digit (0-7) means the permission of owner, group and others.</p>
-<p>The command <code>chmod</code> change the permission of a file. For example, <code>chmod 664 a.txt</code> changes the authority of a.txt. Let both owner and group owner can both read and write, and the others can read only.</p>
+<table>
+<thead>
+<tr>
+<th>digit</th>
+<th>possibility</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>d, -</td>
+<td>whether it is a directory</td>
+</tr>
+<tr>
+<td>2-4</td>
+<td>r,w,x</td>
+<td>the permission of “owner”</td>
+</tr>
+<tr>
+<td>5-7</td>
+<td>r,w,x</td>
+<td>the permission of “group owner”</td>
+</tr>
+<tr>
+<td>8-10</td>
+<td>r,w,x</td>
+<td>the permission of “others”</td>
+</tr>
+</tbody></table>
+<p>The 2 to 10 digits in first column are all in <code>r</code>, <code>w</code> or <code>x</code>.</p>
+<table>
+<thead>
+<tr>
+<th>permission</th>
+<th>meaning</th>
+<th>2-based</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>r</td>
+<td>readable</td>
+<td>r– = 100 = 4_2</td>
+</tr>
+<tr>
+<td>w</td>
+<td>writable</td>
+<td>-w- = 010 = 2_2</td>
+</tr>
+<tr>
+<td>x</td>
+<td>executable</td>
+<td>–x = 001 = 1_2</td>
+</tr>
+</tbody></table>
+<p>Since the digit are all in boolean type, it can be presented as three decimal number with each digit (0-7) means the permission of owner, group and others. The command <code>chmod</code> change the permission of a file. For example, <code>chmod 664 a.txt</code> changes the authority of a.txt. Let both owner and group owner can both read and write, and the others can read only.</p>
 <p><img src="/images/linux/command8.png"></p>
 <p>The command <code>chown</code> change the owner of a file. For example, <code>chown root a.txt</code> changes the owner from bobo to root user.</p>
 <p><img src="/images/linux/command9.png"></p>
 <h1 id="Apt-and-Vim"><a href="#Apt-and-Vim" class="headerlink" title="Apt and Vim"></a>Apt and Vim</h1><p>Vim is an very useful text editor. However, it has to be installed from the internet. The apt tool is most recommended for installing package in Ubuntu. It helps you to download the package with its dependency from the Internet and install automatically.</p>
 <figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install vim</span><br><span class="line">vim a.txt</span><br></pre></td></tr></table></figure>
-<p>You will see a text editor in terminal. There are two modes in vim, normal mode (default) and insertion mode (only this mode can be edited). Press <code>a</code> or <code>i</code> to switch from normal mode to insertion mode and press <code>Esc</code> to switch back.</p>
-<p>The <code>:w</code> in normal mode means saving the file, and the <code>:q</code> in normal mode means quit. They can be combined as <code>:wq</code> as well.</p>
-<h1 id="Shell-script"><a href="#Shell-script" class="headerlink" title="Shell script"></a>Shell script</h1><h2 id="Quick-start"><a href="#Quick-start" class="headerlink" title="Quick start"></a>Quick start</h2><p>Now its time for writing a script to execute the Linux command. Use <code>touch</code> command to create a empty text file and change it to executable permission.</p>
+<p>You will see a text editor in terminal. There are two modes in vim, <font color=#FF0000>normal mode (default)</font>  and <font color=#FF0000>insertion mode (only this mode can be edited)</font>. <font color=#0000FF>Press <code>a</code> or <code>i</code> to switch from normal mode to insertion mode and press <code>Esc</code> to switch back</font>.</p>
+<p><font color=#0000FF>The <code>:w</code> in normal mode means saving the file, and the <code>:q</code> in normal mode means quit. They can be combined as <code>:wq</code> as well.</font> If you want to discard the changes without saving, just type <code>:q!</code> to quit mandatory.</p>
+<p>There are several hot key in Vim, such as <code>dd</code> (cut in normal mode) and <code>p</code> (paste in normal mode).</p>
+<h1 id="Shell-script"><a href="#Shell-script" class="headerlink" title="Shell script"></a>Shell script</h1><p>Now its time for writing a script to execute the Linux command. Use <code>touch</code> command to create a empty text file and change it to executable file.</p>
 <figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch test.sh</span><br><span class="line">chmod 744 test.sh</span><br></pre></td></tr></table></figure>
 <p>Open the shell script by a text editor (i.e. <code>vim test.sh</code>) and type the following (You need to press <code>a</code> or <code>i</code> to switch to the editing mode). The first line of a shell script specified the launcher. It is usually written as <code>!#/bin/bash</code>.</p>
 <p><img src="/images/linux/sh1.png"></p>
 <p>Next, press <code>:wq</code> to save and quit. We can use <code>cat test.sh</code> to verify the edition. Then execute the shell script by <code>./test.sh</code>. The <code>./</code> is necessery because the test.sh isn’t the system command so we have to specify the path of the shell script.</p>
 <p><img src="/images/linux/sh2.png"></p>
-<h2 id="Bash-commands"><a href="#Bash-commands" class="headerlink" title="Bash commands"></a>Bash commands</h2><p>We use the bash to execute the shell script. It also supports the condition and loop similar to the general purpose languages. </p>
-<p>Here is the example.</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">:&lt;&lt;!</span><br><span class="line">is multiple annotation</span><br><span class="line">variable declaration: string initialized</span><br><span class="line">	string:</span><br><span class="line">		bare: \ special char</span><br><span class="line">		single quote: pure string</span><br><span class="line">		double quote: ---</span><br><span class="line">	number:int only. $((a)) to use. -gt to use</span><br><span class="line">	array</span><br><span class="line">a=1				cannot a = 1</span><br><span class="line">if [ $a == $ b]; then		cannot[$a == $b]		</span><br><span class="line">!</span><br><span class="line"></span><br><span class="line">read -p &#x27;who are you? &#x27; person</span><br><span class="line">echo &#x27;Hello &#x27;$person&#x27; !&#x27;</span><br><span class="line"></span><br><span class="line">v1=hello\ world\!</span><br><span class="line">v2=&#x27;hello world!&#x27;</span><br><span class="line">echo hello, $v1, $v2, 1$v1&#x27;7&#x27;$v2</span><br><span class="line">echo $&#123;v1:2:3&#125;, $&#123;#v1&#125;</span><br><span class="line"></span><br><span class="line">a=10</span><br><span class="line">b=3</span><br><span class="line">echo $((a+b)), $((a-b)), $((a*b)), $((a/b)), $((a%b))</span><br><span class="line"></span><br><span class="line">A=(apple banana guava)</span><br><span class="line">echo $A, $&#123;A[0]&#125;, $&#123;A[1]&#125;, $&#123;A[2]&#125;</span><br><span class="line">echo $&#123;#A&#125;, $&#123;#A[0]&#125;, $&#123;#A[1]&#125;, $&#123;#A[2]&#125;</span><br><span class="line">echo $&#123;A[*]&#125;, $&#123;#A[*]&#125;</span><br><span class="line"></span><br><span class="line">if [ $a -gt $b ]; then</span><br><span class="line">	echo &#x27;a is bigger&#x27;</span><br><span class="line">elif [ $a == $b ]; then</span><br><span class="line">	echo &#x27;a is equal to b&#x27;</span><br><span class="line">else</span><br><span class="line">	echo &#x27;b is bigger&#x27;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if [ $a == $((10)) ] &amp;&amp; [ $b == $((3)) ]; then</span><br><span class="line">	echo &#x27;a is ten and b is three&#x27;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">for num in 1 2 3; do</span><br><span class="line">	echo hello $num</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">for fruit in $&#123;A[*]&#125;; do</span><br><span class="line">	echo $fruit</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">s=0</span><br><span class="line">for ((i=0;i&lt;10;i++)); do</span><br><span class="line">	s=$((s+i))</span><br><span class="line">done</span><br><span class="line">echo $s</span><br><span class="line"></span><br><span class="line">s=1</span><br><span class="line">while [ $s -lt $((100)) ]; do</span><br><span class="line">	s=$((s*2))</span><br><span class="line">done</span><br><span class="line">echo $s</span><br><span class="line"></span><br><span class="line">function sayHi()&#123;</span><br><span class="line">	echo hello, $&#123;0&#125;, $&#123;1&#125;, $&#123;2&#125;</span><br><span class="line">	echo $0, $1, $2   # out parameter</span><br><span class="line">&#125;</span><br><span class="line">sayHi tree bird</span><br></pre></td></tr></table></figure>
+<h2 id="Comments-and-variables"><a href="#Comments-and-variables" class="headerlink" title="Comments and variables"></a>Comments and variables</h2><p>We use the bash to execute the shell script. It also supports the condition and loop similar to the general purpose languages. </p>
+<p>There are several differents bewteen the general purpose language and bash commands.</p>
+<ul>
+<li>The equal sign <font color=#FF0000>cannot</font> allow spaces on both sides while the declaration. i.e. <code>a=1</code> is valid but <code>a = 1</code> not.</li>
+<li>The dollar sign is necessery to be used while using declared variable. <font color=#0000FF>Furthermore, all the variables are in string type in default, and number variables must be used with $(()).</font></li>
+<li>The text in ‘’ are pure string. <font color=#0000FF> i.e. ‘$a’ is pure string, but “$a” is calling the variable, so does $a.</font></li>
+</ul>
+<p><img src="/images/linux/sh3.png"></p>
+<p>The linux commands we have learned before are all valid in shell script, and there are further commands that is useful.</p>
+<table>
+    <tr> <td style="font-weight:bold">Commands</td> <td style="font-weight:bold">Description</td> </tr>
+    <tr> <td>#</td> <td>One line comment. (Exclude the #!/bin/bash in the first line)</td></tr>
+    <tr> <td>:＜＜！text！</td> <td>Multiline comment</td> </tr>
+</table>
+
+<h2 id="input-and-output"><a href="#input-and-output" class="headerlink" title="input and output"></a>input and output</h2><p><img src="/images/linux/sh4.png"></p>
+<p>Note that the second argument of the command <code>read -p</code> is the variable stores the user’s input, so we have to use ‘’ to let the first argument ‘who are you?’ be a pure string.</p>
+<h2 id="arithmetic"><a href="#arithmetic" class="headerlink" title="arithmetic"></a>arithmetic</h2><p><img src="/images/linux/sh5.png"></p>
+<p>Remember that the default type we called is string, so we have to use $(()) to convert it to number. Shell script also supports <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> (integer division).</p>
+<h2 id="if-else"><a href="#if-else" class="headerlink" title="if else"></a>if else</h2><p>Here is an example. Note that <font color=#FF0000> the operands, the operators and the brackets in the condition must remain space for each other. It is different from variable declaration. </font></p>
+<p>More conditions are in the following table.</p>
+<table>
+<thead>
+<tr>
+<th>Conditions</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-eq, ==</td>
+<td>equal</td>
+</tr>
+<tr>
+<td>-ne, !=</td>
+<td>not equal</td>
+</tr>
+<tr>
+<td>-gt</td>
+<td>greater than</td>
+</tr>
+<tr>
+<td>-ge</td>
+<td>greater or equal than</td>
+</tr>
+<tr>
+<td>-lt</td>
+<td>less than</td>
+</tr>
+<tr>
+<td>-le</td>
+<td>less or equal than</td>
+</tr>
+</tbody></table>
+<p><img src="/images/linux/sh6.png"></p>
+<h2 id="for"><a href="#for" class="headerlink" title="for"></a>for</h2><p><img src="/images/linux/sh7.png"></p>
+<h2 id="while"><a href="#while" class="headerlink" title="while"></a>while</h2><p><img src="/images/linux/sh8.png"></p>
+<h2 id="function"><a href="#function" class="headerlink" title="function"></a>function</h2><p><img src="/images/linux/sh9.png"></p>
+<p>The argument of a function doesn’t need to specify in the (). Use ${num} to call the input. However, ${0} is the command of calling the script.</p>
+<h2 id="Outer-arguments"><a href="#Outer-arguments" class="headerlink" title="Outer arguments"></a>Outer arguments</h2><p>The outer arguments are frequently used in software development. See the following example. </p>
+<p><img src="/images/linux/sh10.png"></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://bnbsking.github.io/2021/02/14/Linux-tutorial-3-Authority-vim-and-shell-script/" data-id="ckl577sy70009f47k10jx32sw" data-title="Linux tutorial 3 - Authority, vim and shell script" class="article-share-link">Share</a>
+      <a data-url="https://bnbsking.github.io/2021/02/14/Linux-tutorial-3-Authority-vim-and-shell-script/" data-id="ckl7rrvot0008vk7k0jek0mh1" data-title="Linux tutorial 3 - Authority, vim and shell script" class="article-share-link">Share</a>
       
       
       
@@ -145,6 +264,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2021/02/15/Linux-tutorial-4-Automation-and-environmental-path/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux tutorial 4 - Automation and environmental path
+        
+      </div>
+    </a>
   
   
     <a href="/2021/02/06/Linux-tutorial-2-File-system-and-basic-commands/" id="article-nav-older" class="article-nav-link-wrap">
@@ -194,6 +322,14 @@
       <ul>
         
           <li>
+            <a href="/2021/02/16/Linux-tutorial-5-SSH-and-SCP-Safe-connection-with-other-machines/">Linux tutorial 5 - SSH and SCP: Safe connection with other machines</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/15/Linux-tutorial-4-Automation-and-environmental-path/">Linux tutorial 4 - Automation and environmental path</a>
+          </li>
+        
+          <li>
             <a href="/2021/02/14/Linux-tutorial-3-Authority-vim-and-shell-script/">Linux tutorial 3 - Authority, vim and shell script</a>
           </li>
         
@@ -203,14 +339,6 @@
         
           <li>
             <a href="/2021/02/06/Linux-tutorial-1-Basic-concepts-and-setup-Ubuntu-in-VMware/">Linux tutorial 1 - Basic concepts and setup Ubuntu in VMware</a>
-          </li>
-        
-          <li>
-            <a href="/2021/01/30/Automation-of-any-GUI-Sikuli/">Automation of any GUI - Sikuli</a>
-          </li>
-        
-          <li>
-            <a href="/2021/01/24/About-data-warehouse/">About data warehouse</a>
           </li>
         
       </ul>

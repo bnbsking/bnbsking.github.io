@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Linux tutorial 5 - SSH and SCP: Safe connection with other machines | Data science exhibition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="In this tutorial, I will introduce how to login and trasfer files to the remote linux system. Here I use the ssh, secure shell, to login and use scp, secure copy protocol to achieve the goal.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux tutorial 5 - SSH and SCP: Safe connection with other machines">
+<meta property="og:url" content="https://bnbsking.github.io/2021/02/16/Linux-tutorial-5-SSH-and-SCP-Safe-connection-with-other-machines/index.html">
+<meta property="og:site_name" content="Data science exhibition">
+<meta property="og:description" content="In this tutorial, I will introduce how to login and trasfer files to the remote linux system. Here I use the ssh, secure shell, to login and use scp, secure copy protocol to achieve the goal.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/ssh2.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/ssh3.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/ssh4.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/ssh5.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/ssh6.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/ssh7.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/scp2.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/linux/scp3.png">
+<meta property="article:published_time" content="2021-02-16T07:32:04.000Z">
+<meta property="article:modified_time" content="2021-02-16T08:48:45.923Z">
+<meta property="article:author" content="James Chao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bnbsking.github.io/images/linux/ssh2.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Data science exhibition" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Data science exhibition</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">short is better</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://bnbsking.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Linux-tutorial-5-SSH-and-SCP-Safe-connection-with-other-machines" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/02/16/Linux-tutorial-5-SSH-and-SCP-Safe-connection-with-other-machines/" class="article-date">
+  <time class="dt-published" datetime="2021-02-16T07:32:04.000Z" itemprop="datePublished">2021-02-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Linux tutorial 5 - SSH and SCP: Safe connection with other machines
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>In this tutorial, I will introduce how to login and trasfer files to the remote linux system. Here I use the ssh, secure shell, to login and use scp, secure copy protocol to achieve the goal.</p>
+<a id="more"></a>
+
+<h1 id="Putty-windows-login-Ubuntu"><a href="#Putty-windows-login-Ubuntu" class="headerlink" title="Putty: windows login Ubuntu"></a>Putty: windows login Ubuntu</h1><p>Now, I will show how to login remote linux system (guest) from windows (host). The software “Putty” is the most simplest way to build the connection.</p>
+<p>By default, the network in VMware is shared by NAT (a mechanism to transfer IPs) from host. This cause that the host and the guest are in different local internet. However, <font color=#FF0000>SSH connections can only be built if both of the original and the target are in the same local internet</font>. More of the fundamental concepts of the internet will maybe discussed in the future.  </p>
+<p>The previous work is to change the network setting from “NAT” to “bridged” so that we can ensure both of the original (host) and the target (guest) are in the same local internet. This step is only for the connection between real machine and virtual machine. For two real machine, we just need to use an internet cable to link them together or use two cables to link them to a router.</p>
+<p><img src="/images/linux/ssh2.png"></p>
+<p><img src="/images/linux/ssh3.png"></p>
+<p>Now we can start the connection.</p>
+<ol>
+<li><p>Ubuntu guest: Install the net-tools to check the IP and openssh-server to launch the server.</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install net-tools </span><br><span class="line">sudo apt install openssh-server</span><br><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+<p><img src="/images/linux/ssh4.png"></p>
+</li>
+<li><p>Windows host: <a target="_blank" rel="noopener" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">Downlaod the .msi of Putty.</a></p>
+</li>
+<li><p>(Optional) Windows host: Open CMD, and type <code>ipconfig</code> to see host IP.<br><img src="/images/linux/ssh5.png"><br>The step is unncessesey cuz the SSH connection doesn’t need the host IP. However, it can help us to check that both of host and guest are in same local internet if you know to verify it. The other way is to use the host terminal to ping the guest IP. e.g. <code>ping 192.168.0.200</code>. The SSH connection will suceed only if the ping suceed.</p>
+</li>
+<li><p>Windows host: Open Putty and type the guest IP to connect. Press True to the alert as well as type username and password to login.</p>
+</li>
+</ol>
+<p><img src="/images/linux/ssh6.png"></p>
+<p><img src="/images/linux/ssh7.png"></p>
+<p>Now you can control the remote computer.</p>
+<h1 id="SCP-transfer-files"><a href="#SCP-transfer-files" class="headerlink" title="SCP: transfer files"></a>SCP: transfer files</h1><p>The SCP tools is the simplest method to transfer the file through SSH channel.</p>
+<ol>
+<li><p>Windows host: Install <a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a></p>
+</li>
+<li><p>Windows host: Create an example file <code>transfer.txt</code> and open git bash in the same folder.</p>
+</li>
+<li><p>Windows host: Type the following command</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp &lt;file&gt; &lt;target_user&gt;@&lt;target_IP&gt;:&lt;target_path&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/linux/scp2.png"></p>
+</li>
+<li><p>Ubuntu guest: Verify the file has been sent to the guest.</p>
+</li>
+</ol>
+<p><img src="/images/linux/scp3.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://bnbsking.github.io/2021/02/16/Linux-tutorial-5-SSH-and-SCP-Safe-connection-with-other-machines/" data-id="ckl7rrvow000bvk7k5vj6bvjd" data-title="Linux tutorial 5 - SSH and SCP: Safe connection with other machines" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/02/15/Linux-tutorial-4-Automation-and-environmental-path/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux tutorial 4 - Automation and environmental path</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Github-x-Hexo/">Github x Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/02/16/Linux-tutorial-5-SSH-and-SCP-Safe-connection-with-other-machines/">Linux tutorial 5 - SSH and SCP: Safe connection with other machines</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/15/Linux-tutorial-4-Automation-and-environmental-path/">Linux tutorial 4 - Automation and environmental path</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/14/Linux-tutorial-3-Authority-vim-and-shell-script/">Linux tutorial 3 - Authority, vim and shell script</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/Linux-tutorial-2-File-system-and-basic-commands/">Linux tutorial 2 - File system and basic commands</a>
+          </li>
+        
+          <li>
+            <a href="/2021/02/06/Linux-tutorial-1-Basic-concepts-and-setup-Ubuntu-in-VMware/">Linux tutorial 1 - Basic concepts and setup Ubuntu in VMware</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 James Chao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
