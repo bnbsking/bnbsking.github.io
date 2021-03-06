@@ -14,6 +14,7 @@
 <meta property="og:description" content="There are three main applications of AI. Images, data, and language. The image processing includes several tasks such as image classification, image dimension reduction, image generation, style transf">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://bnbsking.github.io/images/yolov3/example.png">
+<meta property="og:image" content="https://bnbsking.github.io/images/yolov3/network.png">
 <meta property="og:image" content="https://bnbsking.github.io/images/yolov3/git1.png">
 <meta property="og:image" content="https://bnbsking.github.io/images/yolov3/git2.png">
 <meta property="og:image" content="https://bnbsking.github.io/images/yolov3/main.png">
@@ -27,7 +28,7 @@
 <meta property="og:image" content="https://bnbsking.github.io/images/yolov3/weight.png">
 <meta property="og:image" content="https://bnbsking.github.io/images/yolov3/result.png">
 <meta property="article:published_time" content="2021-02-16T11:50:26.000Z">
-<meta property="article:modified_time" content="2021-02-16T13:16:20.967Z">
+<meta property="article:modified_time" content="2021-03-06T02:26:20.042Z">
 <meta property="article:author" content="James Chao">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://bnbsking.github.io/images/yolov3/example.png">
@@ -118,7 +119,31 @@
 <p><img src="/images/yolov3/example.png"></p>
 <a id="more"></a>
 
-<h1 id="Fundamental"><a href="#Fundamental" class="headerlink" title="Fundamental"></a>Fundamental</h1><h1 id="Environment-Setting"><a href="#Environment-Setting" class="headerlink" title="Environment Setting"></a>Environment Setting</h1><p>System requirements </p>
+<h1 id="Theory"><a href="#Theory" class="headerlink" title="Theory"></a>Theory</h1><h2 id="network-structure"><a href="#network-structure" class="headerlink" title="network structure"></a>network structure</h2><p>Yolo which is an end-to-end neural network for the object detection which has the following structure.</p>
+<p><img src="/images/yolov3/network.png"></p>
+<p>As if the CNN model, the input layer is an image with size 448×448×3 followed by several convolutional layers, max-pooling layers, and dense layers. These layers plays a role for feature extraction and classification. The main difference is the output layer which reshape the neuron back to 3 dimensions. Let’s discuss about the meaning of it.</p>
+<p><font color=#0000FF>A <code>N×N</code> images can be equally divided into <code>S×S</code> grids</font> with <code>N/S × N/S</code> for each. Next, a hyperperameter <font color=#FF0000><code>B</code> determines the number of bounding box centers for each grid</font>. That is, we will see at most <code>B</code> bounding box center in each grid. The more <code>B</code> is, the higher accuracy will be obtained but performance decreased on the contrary. <font color=#0000FF>A bounding box holds 5 parameters</font>, center coordinate (x,y), width w, height h, and the confidence c belongs to a class. Finally, <font color=#0000FF>the number of classes we want to detect is another hyperparameter <code>C</code></font>. The output class is one-hot-encoded, therefore, the output of entire neural network has the shape</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">S×S×(B×5+C).</span><br></pre></td></tr></table></figure>
+<p>The original example proposed by the author set <code>N=448</code>, <code>S=7</code>, <code>B=5</code>, <code>C=20</code> and used VOC as dataset.</p>
+<h2 id="Confidence-IOU"><a href="#Confidence-IOU" class="headerlink" title="Confidence, IOU"></a>Confidence, IOU</h2><p>Although it predict <code>B</code> bounding boxes in a grid, there are only a predicted probability <code>P(object-in-grid)</code> that describe the prob for an object existing in the grid. The confidence score regardless of image classification for each bounding box is <code>c=P(object-in-grid)*IOU</code><br>, where <code>IOU</code> stands for intersection over union and represents the similatiry or overlapping between predicted bounding box and true bounding box. However, each bounding box also recognize a class, so the overall confidence score for a bounding box is</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c &#x3D; P(class-i|object-in-grid)*P(object-in-grid)*IOU &#x3D; P(class-i)*IOU.</span><br></pre></td></tr></table></figure>
+<p>It is more intuitive and elegant as well as combine the classification trem <code>P(class-i)</code> and regression (location) term <code>IOU</code>. Furthermore, as soon as a predicted bounding box generated, we only need to calculate the IOU between itself and the true bounding box belongs to the grid. Hence, Yolo can solves the object detection efficiently.</p>
+<h2 id="Non-Maximum-Suppression-NMS"><a href="#Non-Maximum-Suppression-NMS" class="headerlink" title="Non-Maximum Suppression (NMS)"></a>Non-Maximum Suppression (NMS)</h2><p>Moreover, NMS is an algorithm that filter the redundant bounding boxes which is indispensable in object detection algorithms.</p>
+<ol>
+<li>sort all the bounding boxes according to their confidence score and initialize an empty result list. <br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># example</span></span><br><span class="line">candidates=[B1,B2,B3,B4,B5]</span><br><span class="line">result=[]</span><br></pre></td></tr></table></figure></li>
+<li>Move <code>candidates[0]</code> to Result.<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">candidates=[B2,B3,B4,B5]</span><br><span class="line">result=[B1]</span><br></pre></td></tr></table></figure></li>
+<li>Calculate the IOU between <code>Result[-1]</code> and each element in candidates.<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">candidates=[B2,B3,B4,B5]</span><br><span class="line">result=[B1]</span><br><span class="line">IOU=[<span class="number">0.3</span>,<span class="number">0.7</span>,<span class="number">0.4</span>,<span class="number">0.1</span>] </span><br></pre></td></tr></table></figure></li>
+<li>Remove all the bounding boxes that IOU&gt;0.5 from candidates.<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">candidates=[B2,B4,B5]</span><br><span class="line">result=[B1]</span><br></pre></td></tr></table></figure></li>
+<li>Go back to step 2 until candidates is empty</li>
+</ol>
+<h2 id="Improved-version"><a href="#Improved-version" class="headerlink" title="Improved version"></a>Improved version</h2><p>The improved version of Yolo have been proposed to fourth version so far. The improvment points includes</p>
+<ul>
+<li>Higher solution with 416×416×3 shape in input layer</li>
+<li>Anchor box convolution</li>
+<li>k-means for bounding boxes</li>
+<li>Residual net</li>
+</ul>
+<h1 id="Environment-Setting"><a href="#Environment-Setting" class="headerlink" title="Environment Setting"></a>Environment Setting</h1><p>System requirements </p>
 <ul>
 <li>Anaconda</li>
 <li>Python=3.5</li>
@@ -165,11 +190,15 @@ The labelImg is a free tool that help us to do the labeling for object detection
 </li>
 </ol>
 <p>If the result is not well, go back to the step 7 and doing transfer learning.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@chenchoulo/yolo-%E4%BB%8B%E7%B4%B9-4307e79524fe">Yolo 原理</a></li>
+<li><a target="_blank" rel="noopener" href="https://makerpro.cc/2019/12/train-your-dataset-with-yolov3/">Yolov3 使用Keras辨識小番茄</a></li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://bnbsking.github.io/2021/02/16/AI-image-object-detection-by-Yolov3-x-Keras/" data-id="ckl81850q0000gk7kepi95sgx" data-title="AI image - object detection by Yolov3 x Keras" class="article-share-link">Share</a>
+      <a data-url="https://bnbsking.github.io/2021/02/16/AI-image-object-detection-by-Yolov3-x-Keras/" data-id="cklx3vp8y0004xs7k9tpacwc8" data-title="AI image - object detection by Yolov3 x Keras" class="article-share-link">Share</a>
       
       
       
